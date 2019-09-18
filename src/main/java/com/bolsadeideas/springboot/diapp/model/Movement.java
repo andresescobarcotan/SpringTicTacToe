@@ -24,5 +24,8 @@ public class Movement {
 		this.character = character;
 	} 
 	
+	public Movement() {
+		this.character = 1;
+	}
 	
 }

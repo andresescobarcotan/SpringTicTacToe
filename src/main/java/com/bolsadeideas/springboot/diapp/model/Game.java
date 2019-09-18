@@ -16,6 +16,15 @@ public class Game {
 	}
 	
 	public String putToBoard(Movement mv) {
-		return this.myBoard.putToBoard(mv);
+		String userResult = this.myBoard.putToBoard(mv);
+		Movement machineMovement = this.myBoard.computeMovement(mv);
+		String computerResult = this.myBoard.putToBoard(machineMovement);
+		String finalResult = userResult+ "\n ---- Computer turn ---- \n "+computerResult;
+		return finalResult;
+	}
+	
+
+	public String getID() {
+		return this.ID;
 	}
 }

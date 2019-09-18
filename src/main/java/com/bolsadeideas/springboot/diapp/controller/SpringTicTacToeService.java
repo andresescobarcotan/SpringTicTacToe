@@ -3,13 +3,16 @@ package com.bolsadeideas.springboot.diapp.controller;
 import java.util.ArrayList;
 import java.util.List;
 
-import com.bolsadeideas.springboot.diapp.model.Game;
+import org.springframework.stereotype.Service;
 
+import com.bolsadeideas.springboot.diapp.model.Game;
+import com.bolsadeideas.springboot.diapp.model.Movement;
+
+@Service
 public class SpringTicTacToeService implements ISpringTicTacToeService{
 
 	List<Game> currentGames;
 	
-	private final static String NO_GAME_FOUND = "No game with that ID was found";
 	@Override
 	public String createGame() {
 		// TODO Auto-generated method stub
@@ -21,16 +24,27 @@ public class SpringTicTacToeService implements ISpringTicTacToeService{
 
 	@Override
 	public String getGame(String idGame) {
-		// TODO Auto-generated method stub
-		
-		return null;
+		// TODO: Change this for another more convinient iterator method
+		String strGameBoard ="";
+		for(Game game: currentGames) {
+			if(game.getID().equals(idGame)) {
+				strGameBoard = game.getCurrentStateOfGame();
+			}
+		}
+		return strGameBoard;
 	}
 
 	@Override
-	public String nextMovement(String nm) {
-		// TODO Auto-generated method stub
-		return null;
+	public String nextMovement(String idGame, Movement nm) {
+		String strGameBoard ="";
+		for(Game game: currentGames) {
+			if(game.getID().equals(idGame)) {
+				strGameBoard = game.putToBoard(nm);
+			}
+		}
+		return strGameBoard;
 	}
+	
 
 	public SpringTicTacToeService() {
 		this.currentGames = new ArrayList<Game>();
